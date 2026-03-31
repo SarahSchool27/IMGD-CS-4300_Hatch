@@ -33,9 +33,10 @@ import { default as Mouse    } from '/gulls/mouse.js'
     //Shader itself!!!!
     @fragment
     fn fs( @builtin(position) pos : vec4f ) -> @location(0) vec4f {
-     var p = pos.xy/res;
-    
-      p.y += sin(p.x*10)/10;
+      var p = pos.xy/res;
+      let PI = 3.14159;
+
+       p.y += sin(p.x*10)/10;
 
       var grid_pos = grid(p, 20.0, 40.0); //multiplication for grid
 
@@ -45,6 +46,7 @@ import { default as Mouse    } from '/gulls/mouse.js'
 
       
       grid_pos = fract(grid_pos); //actually make grid
+      grid_pos += sin(PI*p.y);
 
       let circles   = distance( grid_pos, vec2(.5) );
       let threshold = smoothstep( .25,.275, circles );
