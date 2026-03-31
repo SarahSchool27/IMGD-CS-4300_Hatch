@@ -29,19 +29,56 @@ import { default as Mouse    } from '/gulls/mouse.js'
     // the other variables in group 0. Given the new group,
     // the binding index resets to 0.
     @group(1) @binding(0) var videoBuffer:    texture_external;
-  
+    
+    //Shader itself!!!!
     @fragment
     fn fs( @builtin(position) pos : vec4f ) -> @location(0) vec4f {
-      let p = pos.xy / res;
+     let p = pos.xy/res;
 
-      let video = textureSampleBaseClampToEdge( videoBuffer, backSampler, p );
+    
 
-      let fb = textureSample( backBuffer, backSampler, p );
+      var grid_pos = grid(p, 4.0, 2.0);
 
-      let out = video * .05 + fb * .975;
 
-      return vec4f( out.rgb, 1. );
-  }`
+
+      var grid_mask = isGridCoord(p, 2., 1., 4.0, 2.0);
+      return vec4(vec3(grid_mask),1.0);
+
+
+      return vec4( grid_pos.x,grid_pos.y, 1. ,1.);
+    } 
+
+
+
+    fn grid(p : vec2f, rows : f32, cols : f32) -> vec2f{
+      var grid_pos: vec2f = vec2(p.x * cols, p.y * rows);
+
+      grid_pos = fract(grid_pos);
+
+
+      
+
+      return grid_pos;
+
+    }
+
+
+        
+    //0 indexed
+    fn isGridCoord(p : vec2f, query_row: f32, query_col: f32, rows : f32, cols : f32,)-> f32{
+        var grid_pos: vec2f = vec2(p.x * cols, p.y * rows);
+
+
+        //row, col
+        if( floor(grid_pos.y) == query_row && floor(grid_pos.x) == query_col){
+          return 1.0;
+        } else {
+        return 0.0;
+        }
+
+
+    }
+  `
 
   // our vertex + fragment shader together
   const shader = quadVertexShader + fragmentShader
