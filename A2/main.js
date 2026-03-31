@@ -33,19 +33,22 @@ import { default as Mouse    } from '/gulls/mouse.js'
     //Shader itself!!!!
     @fragment
     fn fs( @builtin(position) pos : vec4f ) -> @location(0) vec4f {
-     let p = pos.xy/res;
-
+     var p = pos.xy/res;
+    
+      p.y += sin(p.x*10)/10;
     
 
-      var grid_pos = grid(p, 4.0, 2.0);
+      var grid_pos = grid(p, 20.0, 40.0);
+
+      let circles   = distance( grid_pos, vec2(.5) );
+      let threshold = smoothstep( .25,.275, circles );
+      return vec4(threshold,threshold,threshold,1.0);
 
 
-
-      var grid_mask = isGridCoord(p, 2., 1., 4.0, 2.0);
-      return vec4(vec3(grid_mask),1.0);
-
-
-      return vec4( grid_pos.x,grid_pos.y, 1. ,1.);
+      //view grid
+      //var grid_mask = isGridCoord(p, 2., 1., 4.0, 2.0);
+      //return vec4(vec3(grid_mask),1.0);
+     //return vec4( grid_pos.x,grid_pos.y, 1. ,1.);
     } 
 
 
