@@ -36,13 +36,21 @@ import { default as Mouse    } from '/gulls/mouse.js'
      var p = pos.xy/res;
     
       p.y += sin(p.x*10)/10;
-    
 
-      var grid_pos = grid(p, 20.0, 40.0);
+      var grid_pos = grid(p, 20.0, 40.0); //multiplication for grid
+
+      var color : vec3f = vec3f(0.0);
+      color = abs(floor(grid_pos.y) % 2) * vec3(0.5,0.5,0.5); //has to be abs or flip results on the negative
+      //p.x += frame/ 10 * floor(grid_pos.y) % 2;
+
+      
+      grid_pos = fract(grid_pos); //actually make grid
 
       let circles   = distance( grid_pos, vec2(.5) );
       let threshold = smoothstep( .25,.275, circles );
-      return vec4(threshold,threshold,threshold,1.0);
+
+      color += vec3(threshold);
+      return vec4(color,1.0);
 
 
       //view grid
@@ -55,12 +63,6 @@ import { default as Mouse    } from '/gulls/mouse.js'
 
     fn grid(p : vec2f, rows : f32, cols : f32) -> vec2f{
       var grid_pos: vec2f = vec2(p.x * cols, p.y * rows);
-
-      grid_pos = fract(grid_pos);
-
-
-      
-
       return grid_pos;
 
     }
