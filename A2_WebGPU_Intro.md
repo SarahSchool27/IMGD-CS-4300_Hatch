@@ -1,4 +1,4 @@
-Assignment 3 - WebGPU Intro <br/>
+Assignment 2 - WebGPU Intro <br/>
 Sarah Hatch <br/>
 April 2nd 2026<br/>
 
