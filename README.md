@@ -8,5 +8,6 @@ Date: D Term, Spring 2026 <br>
 Repo of Sarah Hatch's work for the WPI course IMGD/CS 4300 Graphics Simulations and Aesthetics
 
 ## Assignements
-- Assignment #1: [video](https://vimeo.com/1176402534?share=copy&fl=sv&fe=ci), [code](A1_ShaderCode.txt), [explanation](A1.md)
-- Assignment #2 - WebGPU Intro: [website](https://sarahschool27.github.io/4300_A2_Hatch/), [code](https://github.com/SarahSchool27/4300_A2_Hatch/blob/main/main.js), [explanation](A2_WebGPU_Intro.md)
+- Project #1: [video](https://vimeo.com/1176402534?share=copy&fl=sv&fe=ci), [code](A1_ShaderCode.txt), [explanation](A1.md)
+- Project #2 - WebGPU Intro: [website](https://sarahschool27.github.io/4300_A2_Hatch/), [code](https://github.com/SarahSchool27/4300_A2_Hatch/blob/main/main.js), [explanation](A2_WebGPU_Intro.md)
+- Project #3 [website](https://sarahschool27.github.io/4300_A4_Hatch_ReactionDiffusion/), [code](https://github.com/SarahSchool27/4300_A4_Hatch_ReactionDiffusion/blob/main/README.md), [explanation](.)
